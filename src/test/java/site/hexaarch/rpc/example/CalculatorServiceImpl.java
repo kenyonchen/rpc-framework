@@ -1,5 +1,7 @@
 package site.hexaarch.rpc.example;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import site.hexaarch.rpc.annotation.RpcService;
 
 /**
@@ -9,24 +11,26 @@ import site.hexaarch.rpc.annotation.RpcService;
  */
 @RpcService(CalculatorService.class)
 public class CalculatorServiceImpl implements CalculatorService {
+    private static final Logger logger = LoggerFactory.getLogger(CalculatorServiceImpl.class);
+
     @Override
     public int add(int a, int b) {
         int result = a + b;
-        System.out.println("Calculated: " + a + " + " + b + " = " + result);
+        logger.info("Calculated: {} + {} = {}", a, b, result);
         return result;
     }
 
     @Override
     public int subtract(int a, int b) {
         int result = a - b;
-        System.out.println("Calculated: " + a + " - " + b + " = " + result);
+        logger.info("Calculated: {} - {} = {}", a, b, result);
         return result;
     }
 
     @Override
     public int multiply(int a, int b) {
         int result = a * b;
-        System.out.println("Calculated: " + a + " * " + b + " = " + result);
+        logger.info("Calculated: {} * {} = {}", a, b, result);
         return result;
     }
 
@@ -36,7 +40,7 @@ public class CalculatorServiceImpl implements CalculatorService {
             throw new IllegalArgumentException("除数不能为0");
         }
         int result = a / b;
-        System.out.println("Calculated: " + a + " / " + b + " = " + result);
+        logger.info("Calculated: {} / {} = {}", a, b, result);
         return result;
     }
 }
